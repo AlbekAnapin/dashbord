@@ -341,7 +341,7 @@
   }
 
   /* ------------------------------------------------------------ ДАННЫЕ И НАСТРОЙКИ */
-  function viewData() {
+ function viewData() {
     const all = sortedSnaps(), S = state.settings;
     const D = derive();
     const snapRows = all.map((s) => {
@@ -370,7 +370,7 @@
       <p><b>Ограничение:</b> в данных нет численности студентов и ППС, поэтому показатели абсолютные — крупные ВУЗы в невыгодном положении.</p></div>
       <div class="tbl-wrap" style="max-height:360px;margin-top:8px"><table><thead><tr><th class="name" style="position:static">Код</th><th style="text-align:left">Показатель</th><th style="text-align:left">Критерий</th><th style="text-align:left">Шкала</th></tr></thead><tbody>${methRows}</tbody></table></div></details></div>`;
     return `
-    <div class="card"><h2>Загрузка срезов</h2><div class="sub">Файлы разбираются в браузере и никуда не отправляются. Можно загрузить несколько срезов сразу.</div>
+    /*<div class="card"><h2>Загрузка срезов</h2><div class="sub">Файлы разбираются в браузере и никуда не отправляются. Можно загрузить несколько срезов сразу.</div>
       <div class="drop" id="dropMain"><div class="big">Перетащите Excel-файлы сюда</div><div class="muted">или <a href="#" id="pickLink">выберите файлы</a> (.xlsx). Здесь же можно загрузить сохранённый <code>bundle.js</code>.</div></div>
       ${all.length ? `<div class="tbl-wrap" style="max-height:none;margin-top:14px"><table class="snap-table"><thead><tr><th>Название среза</th><th>Дата</th><th>Файл</th><th>ОВПО</th><th>Проверка разбора</th><th></th></tr></thead><tbody>${snapRows}</tbody></table></div>` : ''}
     </div>
@@ -392,7 +392,7 @@
       <li>Положите файл в папку <code>data/</code> сайта (замените существующий) и отправьте изменения на GitHub.</li>
       <li>Сотрудники откроют ссылку и сразу увидят все дашборды — загружать файлы им не нужно.</li></ol>
       <div class="note warn">Сайт на GitHub Pages общедоступен по ссылке. Данные по ОВПО — служебные: используйте закрытый репозиторий с закрытым доступом к Pages или внутренний хостинг, если публиковать их открыто нельзя.</div>
-      <div class="form-row"><button class="btn" id="exportBundle">Скачать bundle.js</button><button class="btn danger" id="wipe">Очистить данные в браузере</button></div></div>${methodology}`;
+      <div class="form-row"><button class="btn" id="exportBundle">Скачать bundle.js</button><button class="btn danger" id="wipe">Очистить данные в браузере</button></div></div>*/ ${methodology}`;
   }
 
   /* ------------------------------------------------------------ загрузка файлов */
