@@ -647,10 +647,7 @@
       <p><b>Ограничение:</b> в данных нет численности студентов и ППС, поэтому показатели абсолютные — крупные ВУЗы в невыгодном положении.</p></div>
       <div class="tbl-wrap" style="max-height:360px;margin-top:8px"><table><thead><tr><th class="name" style="position:static">Код</th><th style="text-align:left">Показатель</th><th style="text-align:left">Критерий</th><th style="text-align:left">Шкала</th></tr></thead><tbody>${methRows}</tbody></table></div></details></div>`;
     return `${lockBanner()}
-    <div class="card"><h2>Загрузка срезов</h2><div class="sub">Файлы разбираются в браузере и никуда не отправляются. Можно загрузить несколько срезов сразу.</div>
-      <div class="drop" id="dropMain"><div class="big">Перетащите Excel-файлы сюда</div><div class="muted">или <a href="#" id="pickLink">выберите файлы</a> (.xlsx). Здесь же можно загрузить сохранённый <code>bundle.js</code>.</div></div>
-      ${all.length ? `<div class="tbl-wrap" style="max-height:none;margin-top:14px"><table class="snap-table"><thead><tr><th>Название среза</th><th>Дата</th><th>Файл</th><th>ОВПО</th><th>Проверка разбора</th><th></th></tr></thead><tbody>${snapRows}</tbody></table></div>` : ''}
-    </div>
+   
     <div class="grid g2" style="margin-top:16px">
       <div class="card"><h2>Какие ОВПО учитывать</h2><div class="sub">Например, только действующие организации</div>
         <div class="note ${S.activeNames ? '' : 'warn'}">${activeInfo}</div>
@@ -663,17 +660,23 @@
         <details><summary>Веса отдельных показателей</summary><div class="tbl-wrap" style="max-height:340px;margin-top:6px"><table><thead><tr><th class="name" style="position:static">Показатель</th><th style="text-align:left">Критерий</th><th>Вес</th></tr></thead><tbody>${indW}</tbody></table></div></details>
         <div class="form-row"><button class="btn ghost" id="resetSettings"${state.locked ? ' disabled' : ''}>Вернуть настройки по умолчанию</button></div></div>
     </div>
-    <div class="card" style="margin-top:16px"><h2>Публикация для сотрудников (GitHub Pages)</h2>
-      <div class="sub">${state.published ? '<span class="tag pub">данные загружены из data/bundle.js</span>' : 'Сейчас данные хранятся только в вашем браузере.'} ${PUB_SETTINGS ? '<span class="tag pub">настройки опубликованы' + (PUB_SETTINGS._updated ? ' ' + esc(PUB_SETTINGS._updated.slice(0, 10)) : '') + '</span>' : ''}</div>
-      <ol class="mini" style="line-height:1.7">
-        <li><b>Данные + настройки:</b> «Скачать bundle.js» → замените файл <code>data/bundle.js</code> в репозитории → commit. В файл попадают срезы и настройки.</li>
-        <li><b>Только настройки</b> (учитываемые показатели, веса, список ОВПО): «Скачать settings.js» → замените <code>data/settings.js</code> → commit. Данные перезаливать не нужно. Побеждает более свежий из двух файлов.</li>
-        <li>Опубликованные настройки <b>закреплены для всех посетителей</b> — они не могут менять их у себя. Вы правите настройки, открыв сайт с <code>?edit</code> в конце адреса.</li></ol>
-      <label class="chip"><input type="checkbox" id="exportIds" ${state.exportIds ? 'checked' : ''}> включить ID записей (студентов / выпускников / ППС) в bundle.js</label>
-      <div class="note warn" style="margin-top:8px">ID-списки заметно увеличивают размер файла, а после публикации доступны всем, у кого есть ссылка на сайт. По умолчанию ID в bundle.js не включаются: данные остаются только агрегатами по ОВПО. Сайт на GitHub Pages общедоступен по ссылке — для служебных данных используйте закрытый доступ или внутренний хостинг.</div>
-      <div class="form-row"><button class="btn" id="exportBundle">Скачать bundle.js</button><button class="btn" id="exportSettings">Скачать settings.js</button><button class="btn danger" id="wipe">Очистить данные в браузере</button></div></div>${methodology}`;
+   ${methodology}`;
   }
+ // <div class="card"><h2>Загрузка срезов</h2><div class="sub">Файлы разбираются в браузере и никуда не отправляются. Можно загрузить несколько срезов сразу.</div>
+ //      <div class="drop" id="dropMain"><div class="big">Перетащите Excel-файлы сюда</div><div class="muted">или <a href="#" id="pickLink">выберите файлы</a> (.xlsx). Здесь же можно загрузить сохранённый <code>bundle.js</code>.</div></div>
+ //      ${all.length ? `<div class="tbl-wrap" style="max-height:none;margin-top:14px"><table class="snap-table"><thead><tr><th>Название среза</th><th>Дата</th><th>Файл</th><th>ОВПО</th><th>Проверка разбора</th><th></th></tr></thead><tbody>${snapRows}</tbody></table></div>` : ''}
+ //    </div>
+    // <div class="card" style="margin-top:16px"><h2>Публикация для сотрудников (GitHub Pages)</h2>
+    //   <div class="sub">${state.published ? '<span class="tag pub">данные загружены из data/bundle.js</span>' : 'Сейчас данные хранятся только в вашем браузере.'} ${PUB_SETTINGS ? '<span class="tag pub">настройки опубликованы' + (PUB_SETTINGS._updated ? ' ' + esc(PUB_SETTINGS._updated.slice(0, 10)) : '') + '</span>' : ''}</div>
+    //   <ol class="mini" style="line-height:1.7">
+    //     <li><b>Данные + настройки:</b> «Скачать bundle.js» → замените файл <code>data/bundle.js</code> в репозитории → commit. В файл попадают срезы и настройки.</li>
+    //     <li><b>Только настройки</b> (учитываемые показатели, веса, список ОВПО): «Скачать settings.js» → замените <code>data/settings.js</code> → commit. Данные перезаливать не нужно. Побеждает более свежий из двух файлов.</li>
+    //     <li>Опубликованные настройки <b>закреплены для всех посетителей</b> — они не могут менять их у себя. Вы правите настройки, открыв сайт с <code>?edit</code> в конце адреса.</li></ol>
+    //   <label class="chip"><input type="checkbox" id="exportIds" ${state.exportIds ? 'checked' : ''}> включить ID записей (студентов / выпускников / ППС) в bundle.js</label>
+    //   <div class="note warn" style="margin-top:8px">ID-списки заметно увеличивают размер файла, а после публикации доступны всем, у кого есть ссылка на сайт. По умолчанию ID в bundle.js не включаются: данные остаются только агрегатами по ОВПО. Сайт на GitHub Pages общедоступен по ссылке — для служебных данных используйте закрытый доступ или внутренний хостинг.</div>
+    //   <div class="form-row"><button class="btn" id="exportBundle">Скачать bundle.js</button><button class="btn" id="exportSettings">Скачать settings.js</button><button class="btn danger" id="wipe">Очистить данные в браузере</button></div></div>
 
+   
   /* ------------------------------------------------------------ загрузка файлов */
   function parseBundleText(txt) {
     let t = txt.trim(); const i = t.indexOf('{'); const j = t.lastIndexOf('}');
